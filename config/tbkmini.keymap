@@ -186,8 +186,8 @@
 
                         bindings = <
    ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(RBKT)   &kp MINUS      &kp N8         &kp N9         &kp N0         &kp LS(BSLH)
-   ___x___        ___x___        ___x___        ___x___        NXT_LYR        ___x___             &kp LS(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LS(RIGHT)
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp LC(LEFT)   &kp PG_UP      &kp PG_DN      &kp LC(RIGHT)  ___x___
+   ___x___        ___x___        ___x___        ___x___        NXT_LYR        ___x___             &kp LC(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LC(RIGHT)
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp LS(LEFT)   &kp PG_UP      &kp PG_DN      &kp LS(RIGHT)  ___x___
                                                 _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
@@ -233,8 +233,8 @@
 // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(P)      &kp KP_N7      &kp KP_N8      &kp KP_N9      &kp KP_MINUS   &kp PG_UP
-   ___x___        ___x___        ___x___        NXT_LYR        ___x___        ___x___             &kp LS(P)      &kp KP_N4      &kp KP_N5      &kp KP_N6      &kp KP_PLUS    &kp PG_DN
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(P)      &kp KP_N7      &kp KP_N8      &kp KP_N9      &kp KP_MINUS   &kp KP_MULTIPLY
+   ___x___        ___x___        ___x___        NXT_LYR        ___x___        ___x___             &kp LS(P)      &kp KP_N4      &kp KP_N5      &kp KP_N6      &kp KP_PLUS    &kp KP_DIVIDE
    ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp KP_N0      &kp KP_N1      &kp KP_N2      &kp KP_N3      &kp KP_ENTER   &kp K_APP
                                                 _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
                         >;
@@ -257,7 +257,7 @@
                         bindings = <
    &m_passwd_1    ___x___        ___x___        ___x___        ___x___        NXT_LYR             NXT_LYR        &kp C_PREV     &kp C_PP       &kp C_NEXT     ___x___        &m_passwd_3
    &m_passwd_2    ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp C_VOL_UP   &kp C_VOL_DN   &kp C_MUTE     ___x___        &m_passwd_4
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
+   &bt BT_CLR     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4        ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
                                                 &bootloader    _TRANS_        &m_mac_lock         &m_mac_lock    _TRANS_        &bootloader
                         >;
                 };
