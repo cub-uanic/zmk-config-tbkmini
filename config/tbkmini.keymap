@@ -94,8 +94,8 @@
                                 , <&kp E>
                                 , <&kp I>
                                 , <&kp T>
-                                , <&kp I>
                                 , <&kp SEMICOLON>
+                                , <&kp V>
                                 , <&kp ENTER>
                                 ;
                 };
@@ -108,12 +108,10 @@
                                 = <&kp V>
                                 , <&kp I>
                                 , <&kp T>
-                                , <&kp APOS>
-                                , <&macro_press   &kp LSHFT>
-                                , <&kp N7>
-                                , <&kp N1>
-                                , <&kp N3>
-                                , <&macro_release &kp LSHFT>
+                                , <&kp LS(APOS)>
+                                , <&kp LS(N7)>
+                                , <&kp LS(N1)>
+                                , <&kp LS(N3)>
                                 , <&kp ENTER>
                                 ;
                 };
@@ -142,9 +140,9 @@
 // | `/~      | Z         | X        | C         | V        | B        |||| N        | M        | ,        | .        | /        | ]         |
 //                                   | LCTL/BSPC | LALT/DEL | LGUI/ESC |||| RGUI/INS | RALT/ENT | RCTL/SPC |
                         bindings = <
-   &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T        &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBRC
+   &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T        &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
    &mt LSHFT TAB  &lt _UNCONV A  &lt _FKEYS S   &lt _NUMPAD D  &lt _ARROW F   &lt _MOUSE G        &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mt RSHFT APOS
-   &kp GRAVE      &kp Z          &kp X          &kp C          &kp V          &kp B               &kp N          &kp M          &kp COMMA      &kp DOT        &kp FSLH       &kp RBRC
+   &kp GRAVE      &kp Z          &kp X          &kp C          &kp V          &kp B               &kp N          &kp M          &kp COMMA      &kp DOT        &kp FSLH       &kp RBKT
                                                 &mt LCTRL BSPC &mt LALT DEL   &mt LGUI ESC        &mt RGUI INS   &mt RALT RET   &mt RCTRL SPC
                         >;
                 };
@@ -163,8 +161,8 @@
 
                         bindings = <
    ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp BSLH       &kp APOS       &kp LS(DOT)    &kp N4         &kp N5         &kp N2
-   ___x___        NXT_LYR        ___x___        ___x___        ___x___        ___x___             &kp LBRC       &kp N1         &kp LS(MINUS)  &kp LS(LBRC)   &kp LS(P)      &kp P
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp N3         &kp N6         &kp LS(COMMA)  &kp LS(DOT)    &kp N7         &kp RBRC
+   ___x___        NXT_LYR        ___x___        ___x___        ___x___        ___x___             &kp LBKT       &kp N1         &kp LS(MINUS)  &kp LS(LBKT)   &kp LS(P)      &kp P
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp N3         &kp N6         &kp LS(COMMA)  &kp LS(DOT)    &kp N7         &kp RBKT
                                                 _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
@@ -187,7 +185,7 @@
 
 
                         bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(RBRC)   &kp MINUS      &kp N8         &kp N9         &kp N0         &kp LS(BSLH)
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(RBKT)   &kp MINUS      &kp N8         &kp N9         &kp N0         &kp LS(BSLH)
    ___x___        ___x___        ___x___        ___x___        NXT_LYR        ___x___             &kp LS(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LS(RIGHT)
    ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp LC(LEFT)   &kp PG_UP      &kp PG_DN      &kp LC(RIGHT)  ___x___
                                                 _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
