@@ -6,21 +6,25 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define _BASE       0
 #define _UNCONV     1
-#define _ARROW      2
-#define _FKEYS      3
-#define _MOUSE      4
-#define _NUMPAD     5
+#define _FKEYS      2
+#define _NUMPAD     3
+#define _ARROW      4
+#define _MOUSE      5
 #define _MACRO      6
-#define _GAME       7
+#define _UPPER      7
+#define _GAME       8
 
 #define NXT_LYR         &trans
 #define _TRANS_         &trans
+#define _______         &trans
 #define ___x___         &none
+#define ___X___         &none
 
 
 &lt {
@@ -132,241 +136,124 @@
         keymap {
                 compatible = "zmk,keymap";
 
+// the layers defined below are supposed to be used with WCE layout on Mac
+// on hardware level, it's QWERTY - but with WCE, it's customized Workman for Programmers
+// primarly, it's optimized for use with Java and IntelliJ IDEA, and Perl
+// also, layers are trivially convertible for 3*6 keyboards like Corne or TBK Mini
+
+// Layer 0 : default layer
+// -------------------------------------------------------------------------------------------
+/*
+            DSFT Q    D    R    W    B                      J    F    U    P    ;:   '"
+            TAB  A    S    H    T    G                      Y    N    E    O    I    -_
+            GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
+*/
                 default_layer {
-// Layer 0 : default, actual on Mac with WCE layout (optimized for Java / IntelliJ IDEA)
-// -------------------------------------------------------------------------------------------
-// | DSFT     | Q         | W        | E         | R        | _MACRO/T |||| _MACRO/Y | U        | I        | O        | P        | [         |
-// | LSFT/TAB | _UNCONV/A | _FKEYS/S | _NUMPAD/D | _ARROW/F | _MOUSE/G |||| H        | J        | K        | L        | ;        | RSFT/QUOT |
-// | `/~      | Z         | X        | C         | V        | B        |||| N        | M        | ,        | .        | /        | ]         |
-//                                   | LCTL/BSPC | LALT/DEL | LGUI/ESC |||| RGUI/INS | RALT/ENT | RCTL/SPC |
                         bindings = <
-   &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T        &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
-   &mt LSHFT TAB  &lt _UNCONV A  &lt _FKEYS S   &lt _NUMPAD D  &lt _ARROW F   &lt _MOUSE G        &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mt RSHFT APOS
-   &kp GRAVE      &kp Z          &kp X          &kp C          &kp V          &kp B               &kp N          &kp M          &kp COMMA      &kp DOT        &kp FSLH       &kp RBKT
-                                                &mt LCTRL BSPC &mt LALT DEL   &mt LGUI ESC        &mt RGUI INS   &mt RALT RET   &mt RCTRL SPC
+   &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T              &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
+   &mt LSHFT TAB  &lt _UNCONV A  &lt _FKEYS S   &lt _NUMPAD D  &lt _ARROW F   &lt _MOUSE G              &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mt RSHFT APOS
+   &kp GRAVE      &kp Z          &kp X          &kp C          &lt _UPPER V   &kp B                     &kp N          &lt _UPPER M   &kp COMMA      &kp DOT        &kp FSLH       &kp RBKT
+                                                &mt LCTRL BSPC &mt LSHFT DEL  &mt LGUI ESC              &mt RGUI INS   &mt RSHFT RET  &mt RCTRL SPC
                         >;
                 };
 
+
+// Layer1/_UNCONV: unconvenient keys
+// -------------------------------------------------------------------------------------------
+/*
+            NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  |    ^    *    (    )    %
+            NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  &    -    >    {    }    @
+            NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  '    !    $    "    :    ;
+            NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  #    [    <    >    ]    \ 
+*/
                 unconv_layer {
-// Layer1/_UNCONV: unconvenient keys on right hand, actual on Mac (optimized for Java / IntelliJ IDEA)
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-
-//       & - > { } @
-//       ' ! $ " : ;
-//       # [ < > ] \
-
                         bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp BSLH       &kp APOS       &kp LS(DOT)    &kp N4         &kp N5         &kp N2
-   ___x___        NXT_LYR        ___x___        ___x___        ___x___        ___x___             &kp LBKT       &kp N1         &kp LS(MINUS)  &kp LS(LBKT)   &kp LS(P)      &kp P
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp N3         &kp N6         &kp LS(COMMA)  &kp LS(DOT)    &kp N7         &kp RBKT
-                                                _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
-                        >;
-                };
-
-                arrow_layer {
-// Layer1/_UNCONV: unconvenient keys on right hand, actual on Mac (optimized for Java / IntelliJ IDEA)
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-
-//    ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,          A1_FN05, KC_MINS, KC_8   , KC_9   , KC_0   , A1_FN08,
-//
-//    ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,          KC_BSLS, KC_QUOT, A1_FN07, KC_4   , KC_5   , KC_2   ,
-//    ___x___, NXT_LYR, ___x___, ___x___, ___x___, ___x___,          KC_LBRC, KC_1   , A1_FN01, A1_FN04, A1_FN03, KC_P   ,
-//    ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,          KC_3   , KC_6   , A1_FN06, A1_FN07, KC_7   , KC_RBRC,
-
-//       | ^ * ( ) %
-
-
-                        bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(RBKT)   &kp MINUS      &kp N8         &kp N9         &kp N0         &kp LS(BSLH)
-   ___x___        ___x___        ___x___        ___x___        NXT_LYR        ___x___             &kp LC(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LC(RIGHT)
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp LS(LEFT)   &kp PG_UP      &kp PG_DN      &kp LS(RIGHT)  ___x___
-                                                _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp BSLH       &kp APOS       &kp LS(DOT)    &kp N4         &kp N5         &kp N2
+   _TRANS_        NXT_LYR        ___x___        ___x___        ___x___        ___x___                   &kp LBKT       &kp N1         &kp LS(MINUS)  &kp LS(LBKT)   &kp LS(P)      &kp P
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp N3         &kp N6         &kp LS(COMMA)  &kp LS(DOT)    &kp N7         &kp RBKT
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
 
 
+// Layer2/_FKEYS: F-keys + PgUp/PgDn + App
+// -------------------------------------------------------------------------------------------
                 fkeys_layer {
-// Layer2/_FKEYS: F-keys + PgUp/PgDn on right hand
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp F1         &kp F2         &kp F3         &kp F4         &kp PG_UP
-   ___x___        ___x___        NXT_LYR        ___x___        ___x___        ___x___             ___x___        &kp F5         &kp F6         &kp F7         &kp F8         &kp PG_DN
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp F9         &kp F10        &kp F11        &kp F12        &kp K_APP
-                                                _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        &kp F1         &kp F2         &kp F3         &kp F4         &kp PG_UP
+   _TRANS_        ___x___        NXT_LYR        ___x___        ___x___        ___x___                   ___x___        &kp F5         &kp F6         &kp F7         &kp F8         &kp PG_DN
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        &kp F9         &kp F10        &kp F11        &kp F12        &kp K_APP
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
 
 
-                mouse_layer {
-// Layer3/_MOUSE: mouse and navigation
+// Layer3/_NUMPAD: numpad
 // -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &mkp MB2       &msc SCRL_LEFT &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_RIGHT &kp PG_UP
-   ___x___        ___x___        ___x___        ___x___        ___x___        NXT_LYR             &mkp MB1       &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp PG_DN
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &mkp MB3       &kp HOME       &kp END        &kp DELETE     &kp INSERT      &kp K_APP
-                                                _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
-                        >;
-                };
-
-
                 numpad_layer {
-// Layer4/_NUMPAD: numpad
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp LS(P)      &kp KP_N7      &kp KP_N8      &kp KP_N9      &kp KP_MINUS   &kp KP_MULTIPLY
-   ___x___        ___x___        ___x___        NXT_LYR        ___x___        ___x___             &kp LS(P)      &kp KP_N4      &kp KP_N5      &kp KP_N6      &kp KP_PLUS    &kp KP_DIVIDE
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___             &kp KP_N0      &kp KP_N1      &kp KP_N2      &kp KP_N3      &kp KP_ENTER   &kp K_APP
-                                                _TRANS_        _TRANS_        _TRANS_             _TRANS_        _TRANS_        _TRANS_
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp LS(P)      &kp KP_N7      &kp KP_N8       &kp KP_N9       &kp KP_MINUS   &kp KP_MULTIPLY
+   _TRANS_        ___x___        ___x___        NXT_LYR        ___x___        ___x___                   &kp LS(P)      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_PLUS    &kp KP_DIVIDE
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp KP_N0      &kp KP_N1      &kp KP_N2       &kp KP_N3       &kp KP_ENTER   &kp K_APP
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
 
 
+// Layer4/_UNCONV: unconvenient keys + arrows block
+// -------------------------------------------------------------------------------------------
+                arrow_layer {
+                        bindings = <
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp LS(RBKT)   &kp MINUS      &kp N8         &kp N9         &kp N0         &kp LS(BSLH)
+   _TRANS_        ___x___        ___x___        ___x___        NXT_LYR        ___x___                   &kp LC(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LC(RIGHT)
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        &kp LS(LEFT)   &kp PG_UP      &kp PG_DN      &kp LS(RIGHT)  ___x___
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
+                        >;
+                };
+
+// Layer5/_MOUSE: mouse and navigation
+// -------------------------------------------------------------------------------------------
+                mouse_layer {
+                        bindings = <
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &mkp MB2       &msc SCRL_LEFT &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_RIGHT &kp PG_UP
+   _TRANS_        ___x___        ___x___        ___x___        ___x___        NXT_LYR                   &mkp MB1       &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp PG_DN
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &mkp MB3       &kp HOME       &kp END        &kp DELETE     &kp INSERT      &kp K_APP
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
+                        >;
+                };
+
+
+// Layer6/_MACRO: Macros, media and full F-keys
+// -------------------------------------------------------------------------------------------
                 macro_layer {
-// Layer5/_MACRO: Macros, media and full F-keys
+                        bindings = <
+   &m_passwd_1    ___x___        ___x___        ___x___        &sys_reset     NXT_LYR                   NXT_LYR        &kp C_MUTE     &kp C_VOL_DN   &kp C_VOL_UP   ___x___        &m_passwd_3
+   &m_passwd_2    &out OUT_BLE   &out OUT_USB   &out OUT_TOG   ___x___        &sys_reset                &sys_reset     &kp C_PREV     &kp C_PP       &kp C_NEXT     ___x___        &m_passwd_4
+   &bt BT_CLR     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4              &bt BT_CLR     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
+                                                &bootloader    _TRANS_        &m_mac_lock               &m_mac_lock    _TRANS_        &bootloader
+                        >;
+                };
+
+
+// Layer7/_UPPER: upper-row, which is missing on 3x6 layout
 // -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-
-// ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,          KC_MPLY,KC_MPRV,KC_MNXT,KC_VOLD,KC_VOLU,KC_MUTE,
-// ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,          KC_NLCK,KC_PSLS,KC_PAST,KC_PAST,KC_PMNS,KC_BSPC,
-// A5_FN01, A5_FN05, ___x___, ___x___, ___x___, NXT_LYR,          NXT_LYR, KC_MUTE, KC_VOLD, KC_VOLU, ___x___, A5_FN03,
-
-// &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS      &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS &mt RSHFT APOS
+                upper_layer {
                         bindings = <
-   &m_passwd_1    ___x___        ___x___        ___x___        ___x___        NXT_LYR             NXT_LYR        &kp C_PREV     &kp C_PP       &kp C_NEXT     ___x___        &m_passwd_3
-   &m_passwd_2    ___x___        ___x___        ___x___        ___x___        ___x___             ___x___        &kp C_VOL_UP   &kp C_VOL_DN   &kp C_MUTE     ___x___        &m_passwd_4
-   &bt BT_CLR     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4        ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
-                                                &bootloader    _TRANS_        &m_mac_lock         &m_mac_lock    _TRANS_        &bootloader
+   &kp ESC        &kp N1         &kp N2         &kp N3         &kp N4         &kp N5                    &kp N6  &kp N7         &kp N8         &kp N9         &kp N0         &kp EQUAL
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
+   ___x___        ___x___        ___x___        ___x___        NXT_LYR        ___x___                   ___x___        NXT_LYR        ___x___        ___x___        ___x___        ___x___
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
 
 
-                ex1_layer {
-// -----------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+                template_layer {
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-
-
-                ex2_layer {
-// -----------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-
-
-                ex3_layer {
-// -----------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-
-
-                ex4_layer {
-// -----------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-
-
-                ex5_layer {
-// -----------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8   &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP   &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans   &trans    &trans &trans
-                                        &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
-                        >;
-                };
-
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
 
