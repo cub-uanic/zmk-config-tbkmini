@@ -13,9 +13,9 @@
 #define _BASE       0
 #define _UNCONV     1
 #define _FKEYS      2
-#define _NUMPAD     3
-#define _ARROW      4
-#define _MOUSE      5
+#define _MOUSE      3
+#define _NUMPAD     4
+#define _ARROW      5
 #define _MACRO      6
 #define _UPPER      7
 #define _GAME       8
@@ -197,36 +197,37 @@
                 };
 
 
-// Layer3/_NUMPAD: numpad
+// Layer3/_MOUSE: mouse and navigation
+// -------------------------------------------------------------------------------------------
+                mouse_layer {
+                        bindings = <
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &mkp MB2       &msc SCRL_LEFT &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_RIGHT &kp PG_UP
+   _TRANS_        ___x___        ___x___        NXT_LYR        ___x___        ___x___                   &mkp MB1       &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp PG_DN
+   _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   &mkp MB3       &kp HOME       &kp END        &kp DELETE     &kp INSERT      &kp K_APP
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
+                        >;
+                };
+
+
+// Layer4/_NUMPAD: numpad
 // -------------------------------------------------------------------------------------------
                 numpad_layer {
                         bindings = <
    ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp KP_NLCK    &kp KP_N7      &kp KP_N8       &kp KP_N9       &kp KP_MINUS   &kp KP_MULTIPLY
-   _TRANS_        ___x___        ___x___        NXT_LYR        ___x___        ___x___                   &kp LS(P)      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_PLUS    &kp KP_DIVIDE
+   _TRANS_        ___x___        ___x___        ___x___        NXT_LYR        ___x___                   &kp LS(P)      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_PLUS    &kp KP_DIVIDE
    _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp KP_N0      &kp KP_N1      &kp KP_N2       &kp KP_N3       &kp KP_ENTER   &kp K_APP
                                                 _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
 
 
-// Layer4/_UNCONV: unconvenient keys + arrows block
+// Layer5/_ARROW: unconvenient keys + arrows block
 // -------------------------------------------------------------------------------------------
                 arrow_layer {
                         bindings = <
    ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp LS(RBKT)   &kp MINUS      &kp N8         &kp N9         &kp N0         &kp LS(BSLH)
-   _TRANS_        ___x___        ___x___        ___x___        NXT_LYR        ___x___                   &kp LC(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LC(RIGHT)
+   _TRANS_        ___x___        ___x___        ___x___        ___x___        NXT_LYR                   &kp LC(LEFT)   &kp LEFT       &kp UP         &kp DOWN       &kp RIGHT      &kp LC(RIGHT)
    _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        &kp LS(LEFT)   &kp PG_UP      &kp PG_DN      &kp LS(RIGHT)  _TRANS_
-                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
-                        >;
-                };
-
-// Layer5/_MOUSE: mouse and navigation
-// -------------------------------------------------------------------------------------------
-                mouse_layer {
-                        bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &mkp MB2       &msc SCRL_LEFT &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_RIGHT &kp PG_UP
-   _TRANS_        ___x___        ___x___        ___x___        ___x___        NXT_LYR                   &mkp MB1       &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp PG_DN
-   _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   &mkp MB3       &kp HOME       &kp END        &kp DELETE     &kp INSERT      &kp K_APP
                                                 _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
