@@ -160,7 +160,7 @@
                 default_layer {
                         bindings = <
    &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T              &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
-   &mtla TAB      &lt _UNCONV A  &lt _FKEYS S   &lt _NUMPAD D  &lt _ARROW F   &lt _MOUSE G              &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mtra APOS
+   &mtla TAB      &lt _UNCONV A  &lt _FKEYS S   &lt _MOUSE  D  &lt _NUMPAD F  &lt _ARROW G              &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mtra APOS
    &mtls GRAVE    &kp Z          &kp X          &kp C          &lt _UPPER V   &kp B                     &kp N          &lt _UPPER M   &kp COMMA      &kp DOT        &kp FSLH       &mtrs RBKT
                                                 &mtlc BSPC     &mtls DEL      &mtlg ESC                 &mtrg INS      &mtrs RET      &mtrc SPC
                         >;
@@ -201,7 +201,7 @@
 // -------------------------------------------------------------------------------------------
                 numpad_layer {
                         bindings = <
-   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp LS(P)      &kp KP_N7      &kp KP_N8       &kp KP_N9       &kp KP_MINUS   &kp KP_MULTIPLY
+   ___x___        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp KP_NLCK    &kp KP_N7      &kp KP_N8       &kp KP_N9       &kp KP_MINUS   &kp KP_MULTIPLY
    _TRANS_        ___x___        ___x___        NXT_LYR        ___x___        ___x___                   &kp LS(P)      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_PLUS    &kp KP_DIVIDE
    _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   &kp KP_N0      &kp KP_N1      &kp KP_N2       &kp KP_N3       &kp KP_ENTER   &kp K_APP
                                                 _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
@@ -248,9 +248,9 @@
 // -------------------------------------------------------------------------------------------
                 upper_layer {
                         bindings = <
-   &kp ESC        &kp N1         &kp N2         &kp N3         &kp N4         &kp N5                    &kp N6  &kp N7         &kp N8         &kp N9         &kp N0         &kp EQUAL
+   &kp ESC        &kp N1         &kp N2         &kp N3         &kp N4         &kp N5                    &kp N6         &kp N7         &kp N8         &kp N9         &kp N0         &kp EQUAL
    _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        ___x___        ___x___        ___x___        ___x___        _TRANS_
-   _TRANS_        ___x___        ___x___        ___x___        NXT_LYR        ___x___                   ___x___        NXT_LYR        ___x___        ___x___        ___x___        _TRANS_
+   _TRANS_        &kp CAPS       &kp SLCK       &kp KP_NLCK    NXT_LYR        &kp CAPS                  &kp CAPS       NXT_LYR        ___x___        ___x___        ___x___        _TRANS_
                                                 _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
