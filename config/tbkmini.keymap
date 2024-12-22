@@ -160,9 +160,9 @@
                 default_layer {
                         bindings = <
    &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T              &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
-   &mtla TAB      &lt _UNCONV A  &lt _FKEYS S   &lt _MOUSE  D  &lt _NUMPAD F  &lt _ARROW G              &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mtra APOS
-   &mtls GRAVE    &kp Z          &kp X          &kp C          &lt _UPPER V   &kp B                     &kp N          &lt _UPPER M   &kp COMMA      &kp DOT        &kp FSLH       &mtrs RBKT
-                                                &mtlc BSPC     &mtls DEL      &mtlg ESC                 &mtrg INS      &mtrs RET      &mtrc SPC
+   &mtls TAB      &lt _UNCONV A  &lt _FKEYS S   &lt _MOUSE  D  &lt _NUMPAD F  &lt _ARROW G              &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mtrs APOS
+   &mtla GRAVE    &kp Z          &kp X          &kp C          &lt _UPPER V   &kp B                     &kp N          &lt _UPPER M   &kp COMMA      &kp DOT        &kp FSLH       &mtra RBKT
+                                                &mtlc BSPC     &mtls DEL      &mtlg ESC                 &mtrg INS      &mtrs RET      &mtrc SPACE
                         >;
                 };
 
@@ -173,7 +173,7 @@
             NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  |    ^    *    (    )    %
             NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  &    -    >    {    }    @
             NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  '    !    $    "    :    ;
-            NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  #    [    <    >    ]    \ 
+            NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  #    [    <    >    ]    \
 */
                 unconv_layer {
                         bindings = <
