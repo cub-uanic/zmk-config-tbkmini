@@ -26,6 +26,13 @@
 #define ___x___         &none
 #define ___X___         &none
 
+#define BT_RESET        BT_CLR
+#define BT_MBP20        BT_SEL 0
+#define BT_MBP15        BT_SEL 1
+#define BT_MINI         BT_SEL 2
+#define BT_IMAC         BT_SEL 3
+#define BT_WORK         BT_SEL 4
+
 #define mtla            mt LALT
 #define mtra            mt RALT
 #define mtlc            mt LCTRL
@@ -239,8 +246,8 @@
                         bindings = <
    &m_passwd_1    ___x___        ___x___        ___x___        &sys_reset     NXT_LYR                   NXT_LYR        &kp C_MUTE     &kp C_VOL_DN   &kp C_VOL_UP   ___x___        &m_passwd_3
    &m_passwd_2    &out OUT_BLE   &out OUT_USB   &out OUT_TOG   ___x___        &sys_reset                &sys_reset     &kp C_PREV     &kp C_PP       &kp C_NEXT     ___x___        &m_passwd_4
-   &bt BT_CLR     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4              &bt BT_CLR     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
-                                                &bootloader    _TRANS_        &m_mac_lock               &m_mac_lock    _TRANS_        &bootloader
+   &bt BT_RESET   &bt BT_MBP20   &bt BT_MBP15   &bt BT_MINI    &bt BT_IMAC    &bt BT_WORK               &bt BT_RESET   &bt BT_MBP20   &bt BT_MBP15   &bt BT_MINI    &bt BT_IMAC    &bt BT_WORK
+                                                &bootloader    &sys_reset     &m_mac_lock               &m_mac_lock    &sys_reset     &bootloader
                         >;
                 };
 
