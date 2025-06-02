@@ -18,7 +18,8 @@
 #define _ARROW      5
 #define _MACRO      6
 #define _UPPER      7
-#define _GAME       8
+#define _EFKEYS     8
+#define _GAME       9
 
 #define NXT_LYR         &trans
 #define _TRANS_         &trans
@@ -45,10 +46,12 @@
 
 &lt {
         tapping-term-ms = <250>;
+        quick-tap-ms = <250>;
 };
 
 &mt {
         tapping-term-ms = <250>;
+        quick-tap-ms = <250>;
 };
 
 / {
@@ -166,7 +169,7 @@
 */
                 default_layer {
                         bindings = <
-   &m_dbl_shft    &kp Q          &kp W          &kp E          &kp R          &lt _MACRO T              &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
+   &m_dbl_shft    &kp Q          &lt _EFKEYS W  &kp E          &kp R          &lt _MACRO T              &lt _MACRO Y   &kp U          &kp I          &kp O          &kp P          &kp LBKT
    &mtls TAB      &lt _UNCONV A  &lt _FKEYS S   &lt _MOUSE D   &lt _NUMPAD F  &lt _ARROW G              &kp H          &kp J          &kp K          &kp L          &kp SEMI       &mtrs APOS
    &mtla GRAVE    &kp Z          &kp X          &kp C          &lt _UPPER V   &kp B                     &kp N          &lt _UPPER M   &kp COMMA      &kp DOT        &kp FSLH       &mtra RBKT
                                                 &mtlc BSPC     &mtls DELETE   &mtlg ESC                 &mtrg INS      &mtrs RET      &mtrc SPACE
@@ -259,6 +262,18 @@
    &kp ESC        &kp N1         &kp N2         &kp N3         &kp N4         &kp N5                    &kp N6         &kp N7         &kp N8         &kp N9         &kp N0         &kp EQUAL
    _TRANS_        &kp CAPS       &kp SLCK       &kp KP_NLCK    NXT_LYR        &kp CAPS                  &kp CAPS       NXT_LYR        &kp KP_NLCK    &kp SLCK       &kp CAPS       _TRANS_
    _TRANS_        &kp CAPS       &kp SLCK       &kp KP_NLCK    NXT_LYR        &kp CAPS                  &kp CAPS       NXT_LYR        &kp KP_NLCK    &kp SLCK       &kp CAPS       _TRANS_
+                                                _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
+                        >;
+                };
+
+
+// Layer8/_EFKEYS: Extra F-keys + PgUp/PgDn + App
+// -------------------------------------------------------------------------------------------
+                efkeys_layer {
+                        bindings = <
+   ___x___        ___x___        NXT_LYR        ___x___        ___x___        ___x___                   ___x___        &kp F13        &kp F14        &kp F15        &kp F16        &kp PG_UP
+   _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        &kp F17        &kp F18        &kp F19        &kp F20        &kp PG_DN
+   _TRANS_        ___x___        ___x___        ___x___        ___x___        ___x___                   ___x___        &kp F21        &kp F22        &kp F23        &kp F24        &kp K_APP
                                                 _TRANS_        _TRANS_        _TRANS_                   _TRANS_        _TRANS_        _TRANS_
                         >;
                 };
